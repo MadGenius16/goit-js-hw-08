@@ -8,12 +8,21 @@ ul {
 
 .gallery {
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
   gap: 24px;
+  max-width: 1128px;
+  margin: 0 auto;
+  padding: 100px 0px;
 }
 
 li img {
   width: 360px;
   height: 200px;
+  cursor: pointer;
+  transition: scale 500ms;
+}
+
+li img:hover,
+li img:focus {
+  scale: 1.04;
 }
