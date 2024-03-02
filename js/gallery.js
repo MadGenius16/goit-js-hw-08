@@ -65,32 +65,35 @@ const images = [
     },
   ];
 
-  const container = document.querySelector('.gallery')  
-
+  const container = document.querySelector('.gallery');
   container.innerHTML = createMarkup(images);
+  container.addEventListener("click", handleModalOpen);
 
-  // gallery.addEventListener("click", handleModalOpen);
+  function handleModalOpen(event) {
+    event.preventDefault();
+    if (event.currentTarget === event.target) return;
+    console.log(event.target.dataset.source);
+
+    const instance = basicLightbox.create(`
+    <div class="modal">
+      <img src="${event.target.dataset.source}" >
+    </div>
+    `);
+    instance.show();
+  }
 
 
-
-
-
-
-
-
-
-function createMarkup(arr) {
-  return arr.map(({preview, original, description })=>`
-  <li class="gallery-item">
-  <a class="gallery-link" href="${original}">
-    <img
-      class="gallery-image"
-      src="${preview}"
-      data-source="${original}"
-      alt="${description}"
-    />
-  </a>
-</li>
-
-  `).join('')
-}
+  function createMarkup(arr) {
+    return arr.map(({preview, original, description })=>`
+    <li class="gallery-item">
+    <a class="gallery-link" href="${original}">
+      <img
+       class="gallery-image"
+       src="${preview}"
+       data-source="${original}"
+        alt="${description}"
+       />
+    </a>
+    </li>
+    `).join('');
+  }
