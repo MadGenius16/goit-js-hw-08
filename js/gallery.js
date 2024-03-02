@@ -82,7 +82,6 @@ const images = [
     instance.show();
   }
 
-
   function createMarkup(arr) {
     return arr.map(({preview, original, description })=>`
     <li class="gallery-item">
